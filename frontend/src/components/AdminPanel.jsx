@@ -21,7 +21,7 @@ const AdminPanel = ({ relativeClaims, setRelativeClaims, graves, setGraves }) =>
 
   const fetchGraves = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/graves');
+      const response = await axios.get('https://gravecare.onrender.com/graves');
       setGraves(response.data);
     } catch (error) {
       console.error('Error fetching graves:', error);
@@ -31,8 +31,8 @@ const AdminPanel = ({ relativeClaims, setRelativeClaims, graves, setGraves }) =>
   const updateClaimStatus = async (claimId, newStatus) => {
     try {
       setLoading(true);
-      await axios.put(`http://localhost:8080/relative-claims/${claimId}/status`, { status: newStatus });
-      const response = await axios.get('http://localhost:8080/relative-claims');
+      await axios.put(`https://gravecare.onrender.com/relative-claims/${claimId}/status`, { status: newStatus });
+      const response = await axios.get('https://gravecare.onrender.com/relative-claims');
       setRelativeClaims(response.data);
     } catch (error) {
       console.error('Error updating claim status:', error);
@@ -44,7 +44,7 @@ const AdminPanel = ({ relativeClaims, setRelativeClaims, graves, setGraves }) =>
 
   const downloadFile = async (claimId, fileName) => {
     try {
-      const response = await axios.get(`http://localhost:8080/relative-claims/${claimId}/file`, {
+      const response = await axios.get(`https://gravecare.onrender.com/relative-claims/${claimId}/file`, {
         responseType: 'blob',
       });
       const extension = fileName.split('.').pop().toLowerCase();
@@ -106,16 +106,16 @@ const AdminPanel = ({ relativeClaims, setRelativeClaims, graves, setGraves }) =>
       let graveId = currentGrave.id;
   
       if (isEditMode) {
-        await axios.put(`http://localhost:8080/graves/${graveId}`, currentGrave);
+        await axios.put(`https://gravecare.onrender.com/graves/${graveId}`, currentGrave);
       } else {
-        const response = await axios.post('http://localhost:8080/graves', currentGrave);
+        const response = await axios.post('https://gravecare.onrender.com/graves', currentGrave);
         graveId = response.data.id;
       }
   
       if (photoFile) {
         const formData = new FormData();
         formData.append('photo', photoFile);
-        const photoResponse = await axios.post(`http://localhost:8080/graves/${graveId}/upload-photo`, formData, {
+        const photoResponse = await axios.post(`https://gravecare.onrender.com/graves/${graveId}/upload-photo`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
         setCurrentGrave({ ...currentGrave, photo: photoResponse.data.photoPath });
@@ -135,7 +135,7 @@ const AdminPanel = ({ relativeClaims, setRelativeClaims, graves, setGraves }) =>
     if (!window.confirm('Вы уверены, что хотите удалить эту могилу?')) return;
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:8080/graves/${id}`);
+      await axios.delete(`https://gravecare.onrender.com/graves/${id}`);
       await fetchGraves();
     } catch (error) {
       console.error('Error deleting grave:', error);
@@ -259,7 +259,7 @@ const AdminPanel = ({ relativeClaims, setRelativeClaims, graves, setGraves }) =>
                   {grave.photo && (
                     <div className="mt-2">
                       <p className="text-gray-600 dark:text-gray-300"><strong>Фото:</strong></p>
-                      <img src={`http://localhost:8080${grave.photo}`} alt="Grave Photo" className="w-full h-48 object-cover rounded" />
+                      <img src={`https://gravecare.onrender.com${grave.photo}`} alt="Grave Photo" className="w-full h-48 object-cover rounded" />
                     </div>
                   )}
                   {grave.telegramLink && (
@@ -350,7 +350,7 @@ const AdminPanel = ({ relativeClaims, setRelativeClaims, graves, setGraves }) =>
                 {currentGrave.photo && (
                   <div className="mt-2">
                     <p className="text-gray-600 dark:text-gray-300">Текущее фото:</p>
-                    <img src={`http://localhost:8080${currentGrave.photo}`} alt="Current Photo" className="w-full h-48 object-cover rounded" />
+                    <img src={`https://gravecare.onrender.com${currentGrave.photo}`} alt="Current Photo" className="w-full h-48 object-cover rounded" />
                   </div>
                 )}
               </div>

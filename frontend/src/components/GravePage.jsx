@@ -26,7 +26,7 @@ const GravePage = ({ user, relativeClaims }) => {
     console.log('Fetching grave with ID:', id);
     const fetchGrave = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/graves/${id}`);
+        const response = await axios.get(`https://gravecare.onrender.com/graves/${id}`);
         console.log('Fetched Grave data (full):', response.data); // Полный объект
         setSelectedGrave(response.data);
       } catch (error) {
@@ -137,7 +137,7 @@ const GravePage = ({ user, relativeClaims }) => {
     formData.append('userEmail', user ? user.email : ''); // Безопасная проверка
 
     try {
-      const response = await axios.post('http://localhost:8080/relative-claims', formData, {
+      const response = await axios.post('https://gravecare.onrender.com/relative-claims', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -147,7 +147,7 @@ const GravePage = ({ user, relativeClaims }) => {
       alert('Запрос на подтверждение отправлен на модерацию!');
       const fetchRelativeClaims = async () => {
         try {
-          const response = await axios.get('http://localhost:8080/relative-claims');
+          const response = await axios.get('https://gravecare.onrender.com/relative-claims');
           if (response.data && Array.isArray(response.data)) {
             console.log('Updated relative claims:', response.data);
           }
@@ -269,7 +269,7 @@ const GravePage = ({ user, relativeClaims }) => {
       {selectedGrave.photo && (
         <div className="mt-4">
           <img
-            src={`http://localhost:8080${selectedGrave.photo}`}
+            src={`https://gravecare.onrender.com${selectedGrave.photo}`}
             alt="Grave"
             className="w-full h-auto rounded"
           />

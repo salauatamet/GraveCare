@@ -19,7 +19,7 @@ const GraveModal = ({
     const fetchGraveCoordinates = async () => {
       if (burial && burial.graveId) {
         try {
-          const response = await axios.get(`http://localhost:8080/graves/${burial.graveId}`);
+          const response = await axios.get(`https://gravecare.onrender.com/graves/${burial.graveId}`);
           const graveData = response.data;
           setGraveCoordinates(graveData.coordinates);
         } catch (error) {

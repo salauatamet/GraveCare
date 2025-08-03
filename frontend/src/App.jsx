@@ -58,7 +58,7 @@ const AppContent = () => {
   useEffect(() => {
     const fetchAllGraves = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/graves');
+        const response = await axios.get('https://gravecare.onrender.com/graves');
         if (response.data && Array.isArray(response.data)) {
           setAllGraves(response.data);
         } else {
@@ -76,7 +76,7 @@ const AppContent = () => {
   useEffect(() => {
     const fetchRelativeClaims = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/relative-claims');
+        const response = await axios.get('https://gravecare.onrender.com/relative-claims');
         if (response.data && Array.isArray(response.data)) {
           setRelativeClaims(response.data);
         } else {
@@ -106,7 +106,7 @@ const AppContent = () => {
 
   const searchBurials = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/burials', {
+      const response = await axios.get('https://gravecare.onrender.com/burials', {
         params: { fio, city },
       });
       console.log('Search response:', response.data);
@@ -131,7 +131,7 @@ const AppContent = () => {
 
   const viewBurial = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:8080/burials/${id}`);
+      const response = await axios.get(`https://gravecare.onrender.com/burials/${id}`);
       const burialData = response.data;
       if (burialData && burialData.id) {
         setSelectedBurial(burialData);
@@ -167,7 +167,7 @@ const AppContent = () => {
     formData.append('file', relativeData.file);
   
     try {
-      const response = await axios.post('http://localhost:8080/relative-claims', formData, {
+      const response = await axios.post('https://gravecare.onrender.com/relative-claims', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -177,7 +177,7 @@ const AppContent = () => {
       alert('Запрос на подтверждение отправлен на модерацию!');
       const fetchRelativeClaims = async () => {
         try {
-          const response = await axios.get('http://localhost:8080/relative-claims');
+          const response = await axios.get('https://gravecare.onrender.com/relative-claims');
           if (response.data && Array.isArray(response.data)) {
             setRelativeClaims(response.data);
           }

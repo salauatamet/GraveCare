@@ -53,7 +53,7 @@ type RelativeClaim struct {
 
 func initDB() error {
 	var err error
-	db, err = sqlx.Connect("postgres", "user=postgres password=root dbname=graves_db sslmode=disable")
+	db, err = sqlx.Connect("postgres", "user=gravecareuser password=root dbname=graves_db sslmode=disable")
 	if err != nil {
 		return fmt.Errorf("ошибка подключения к базе данных: %v", err)
 	}
@@ -119,7 +119,7 @@ func main() {
 	r := gin.Default()
 
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:5173"}
+	config.AllowOrigins = []string{"https://grave-care.vercel.app"}
 	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}
 	config.AllowHeaders = []string{"Origin", "Content-Type", "Authorization"}
 	r.Use(cors.New(config))
