@@ -53,7 +53,14 @@ type RelativeClaim struct {
 
 func initDB() error {
 	var err error
-	db, err = sqlx.Connect("postgres", "user=gravecareuser password=root dbname=graves_db sslmode=disable")
+	// Получаем строку подключения из переменной окружения
+	dbUrl := os.Getenv("DATABASE_URL")
+	if dbUrl == "" {
+		log.Fatal("DATABASE_URL is not set")
+	}
+
+	db, err := sql.Open("postgres", dbUrl)
+	// db, err = sqlx.Connect("postgres", "user=gravecareuser password=root dbname=graves_db sslmode=disable")
 	if err != nil {
 		return fmt.Errorf("ошибка подключения к базе данных: %v", err)
 	}
