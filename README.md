@@ -1,4 +1,4 @@
-# GraveCare
+# GraveCare | Қазақша
 
 ### Жоба туралы
 
@@ -67,9 +67,8 @@ GraveCare — бұл Қазақстандағы мұсылмандар үшін 
 ### Авторлық
 
 * Жобаның идеясы мен негізі: **SalauatDiiN Ametov**.
-__________________________________
 
-# GraveCare
+# GraveCare | English
 
 ### About the Project
 
@@ -138,9 +137,8 @@ To set up and run the project locally, follow these instructions:
 ### Authorship
 
 * Project idea and foundation: **SalauatDiiN Ametov**.
-__________________________________
 
-# GraveCare
+# GraveCare | Русский
 
 ### О проекте
 
